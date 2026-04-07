@@ -1,6 +1,6 @@
 ---
 name: review-asterinas
-description: Top-level review workflow for Asterinas patches. Use for mixed-scope or unclear-scope reviews when a branch touches multiple subsystems or mixes implementation and test changes, then apply the relevant general, process, IPC, and test review lenses based on the changed files.
+description: Top-level review workflow for Asterinas patches. Use for mixed-scope or unclear-scope reviews when a branch touches multiple subsystems or mixes implementation and test changes, then apply the relevant general, process, IPC, namespace, security, and test review lenses based on the changed files.
 ---
 
 # Review Asterinas
@@ -13,8 +13,10 @@ Use this as the fallback review skill when the patch scope is broad or unclear.
 2. Inspect the changed files before judging the design.
 3. Classify the patch:
 - `test/`, especially `test/initramfs/`: apply the test review lens. This is a peer to the subsystem review lenses, not a fallback.
-- `kernel/src/process/`, namespace switching, clone/unshare/setns, sessions, process groups, terminals, signals, or wait logic: apply the process review lens.
-- `kernel/src/ipc/`, `semget`/`semctl`/`semop`, IPC namespaces, or System V semaphore code: apply the IPC review lens.
+- `kernel/src/process/`, sessions, process groups, terminals, signals, waits, or other non-namespace lifecycle logic: apply the process review lens.
+- `kernel/src/ipc/`, `semget`/`semctl`/`semop`, or other System V IPC and semaphore state-management code: apply the IPC review lens.
+- `clone`/`unshare`/`setns`, namespace objects, nsfs exposure, namespace lifetime, or namespace-specific visibility rules: apply the namespace review lens.
+- credentials, capabilities, permission checks, trust-boundary validation, or other security-sensitive behavior: apply the security review lens.
 - Other kernel and `ostd/` implementation changes: apply the general review lens.
 4. For mixed patches, combine the relevant specialist lenses and report findings in one review.
 5. Present findings first, ordered by severity, with file and line references.

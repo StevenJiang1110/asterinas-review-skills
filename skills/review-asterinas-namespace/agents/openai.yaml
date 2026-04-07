@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Asterinas Namespace"
+  short_description: "Review Asterinas namespace changes"
+  default_prompt: "Use $review-asterinas-namespace to review this Asterinas namespace patch."

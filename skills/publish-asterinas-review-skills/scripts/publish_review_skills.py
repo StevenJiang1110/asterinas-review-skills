@@ -18,8 +18,11 @@ DEFAULT_SKILLS = (
     "review-asterinas",
     "review-asterinas-general",
     "review-asterinas-ipc",
+    "review-asterinas-namespace",
     "review-asterinas-process",
+    "review-asterinas-security",
     "review-asterinas-test",
+    "update-asterinas-review-skills",
     "publish-asterinas-review-skills",
 )
 

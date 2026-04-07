@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Asterinas Review Skills"
+  short_description: "Refine and reorganize Asterinas review skills"
+  default_prompt: "Use $update-asterinas-review-skills to update the Asterinas review skills from my feedback and keep categories separated."

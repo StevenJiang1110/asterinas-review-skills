@@ -1,11 +1,11 @@
 ---
 name: review-asterinas-ipc
-description: Review Asterinas IPC and System V semaphore implementation patches. Use for non-test changes under `kernel/src/ipc/`, `semget`/`semctl`/`semop` syscall paths, IPC namespaces, and related nsfs or setns exposure.
+description: Review Asterinas IPC and System V semaphore implementation patches. Use for non-test changes under `kernel/src/ipc/`, `semget`/`semctl`/`semop` syscall paths, and other System V IPC or semaphore state-management code.
 ---
 
 # Review Asterinas IPC
 
-Review IPC patches with emphasis on Linux semantic fidelity for System V IPC, IPC namespaces, semaphore key and ID handling, synchronization, and namespace-scoped cleanup.
+Review IPC patches with emphasis on Linux semantic fidelity for System V IPC, semaphore key and ID handling, synchronization, permissions, and cleanup.
 
 ## Workflow
 
@@ -15,18 +15,17 @@ Review IPC patches with emphasis on Linux semantic fidelity for System V IPC, IP
 4. Count private-helper call sites before keeping an abstraction.
 5. Re-read comments, lock-order docs, and test names after refactors.
 6. Run the narrowest useful validation, or state the gap explicitly.
+7. If the patch also changes IPC namespace creation, switching, or exposure, apply the peer `review-asterinas-namespace` lens too.
 
 ## Review priorities
 
 ### Correctness and Linux semantics
 
-Check key-versus-ID semantics, permission checks, namespace scoping, cleanup behavior, and blocking semantics before style issues.
-
-For namespace work, explicitly check Linux implied-flag semantics. In particular, `unshare(CLONE_NEWIPC)` should imply `CLONE_SYSVSEM`, just as `CLONE_NEWNS` implies `CLONE_FS`.
+Check key-versus-ID semantics, permission checks, cleanup behavior, and blocking semantics before style issues.
 
 ### Abstraction boundaries
 
-Do not expose namespace-internal lock guards, map types, or raw collections in public APIs when the namespace object can provide a higher-level operation instead.
+Do not expose lock guards, map types, or raw collections in public APIs when the owning IPC object can provide a higher-level operation instead.
 
 ### Single-use private helpers
 

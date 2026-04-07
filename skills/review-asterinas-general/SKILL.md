@@ -1,6 +1,6 @@
 ---
 name: review-asterinas-general
-description: Review non-test Asterinas kernel or OSTD implementation patches outside the process and IPC subsystems. Use for changes under `kernel/` or `ostd/` that do not primarily touch `kernel/src/process/`, namespace switching, `kernel/src/ipc/`, or test-only files under `test/`.
+description: Review non-test Asterinas kernel or OSTD implementation patches outside the process, IPC, namespace, and security-focused areas. Use for changes under `kernel/` or `ostd/` that do not primarily touch `kernel/src/process/`, `kernel/src/ipc/`, namespace switching or nsfs, explicit credential or permission logic, or test-only files under `test/`.
 ---
 
 # Review Asterinas General

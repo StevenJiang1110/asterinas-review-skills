@@ -1,4 +1,4 @@
 interface:
   display_name: "Review Asterinas General"
-  short_description: "Review Asterinas kernel and OSTD changes"
+  short_description: "Review Asterinas general kernel and OSTD changes"
   default_prompt: "Use $review-asterinas-general to review this Asterinas kernel or OSTD patch."

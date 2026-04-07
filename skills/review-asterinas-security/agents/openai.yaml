@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Asterinas Security"
+  short_description: "Review Asterinas security-sensitive changes"
+  default_prompt: "Use $review-asterinas-security to review this Asterinas security-sensitive patch."
