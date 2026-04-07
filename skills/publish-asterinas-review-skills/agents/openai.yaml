@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Asterinas Review Skills"
+  short_description: "Sync and push Asterinas review skills"
+  default_prompt: "Use $publish-asterinas-review-skills to sync my local Asterinas review skills and push them to the shared GitHub repository."

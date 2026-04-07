@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Asterinas"
+  short_description: "Review Asterinas kernel patches"
+  default_prompt: "Use $review-asterinas to review this Asterinas patch."

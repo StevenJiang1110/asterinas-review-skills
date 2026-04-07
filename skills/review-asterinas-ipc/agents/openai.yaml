@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Asterinas IPC"
+  short_description: "Review Asterinas IPC and semaphore changes"
+  default_prompt: "Use $review-asterinas-ipc to review this Asterinas IPC or System V semaphore patch."

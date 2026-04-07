@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Asterinas Process"
+  short_description: "Review Asterinas process and namespace changes"
+  default_prompt: "Use $review-asterinas-process to review this Asterinas process or namespace patch."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Asterinas Test"
+  short_description: "Review Asterinas test changes"
+  default_prompt: "Use $review-asterinas-test to review an Asterinas test change for correctness, style, and validation."
