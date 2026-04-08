@@ -29,9 +29,13 @@ Check these in order:
 - Different semantic claims are packed into one `FN_TEST` instead of being split into focused tests.
 - Helper functions contain most of the test logic or assertions, forcing the main `FN_TEST` flow to lose `TEST_*` coverage.
 - Helper functions manually inspect success-path return values instead of using `CHECK` or `CHECK_WITH`.
+- Helper functions parse fixed-format text in two stages when one direct parse would be clearer, such as matching a fixed `/proc` prefix first and then parsing the suffix separately.
 - Setup or cleanup calls are left bare instead of being wrapped in the test macros without a good reason.
 - New entries in `run_test.sh` are not kept in alphabetical order within their local block.
 - Comments are longer than the code warrants or repeat obvious behavior.
+- A temporary like `expected_*` is introduced only to hold a simple expression for the next assertion, making the assertion flow harder to read.
+- State-changing calls and their immediate postcondition checks are split apart by avoidable temporaries or layout noise.
+- Blank lines in child-process branches do not separate clear phases such as setup, mutation, verification, and exit.
 
 ## Preferred Patterns
 
@@ -42,6 +46,8 @@ Check these in order:
 - In child-process setup or teardown, prefer `CHECK` and `CHECK_WITH`.
 - In helper functions, use `CHECK` or `CHECK_WITH` for expected-success operations; leave expected-failure assertions in `FN_TEST` or the immediate child branch.
 - Wrap setup and cleanup calls in the test macros unless there is a strong reason not to.
+- Keep a state-changing operation and the checks that prove its result adjacent when they form one verification step.
+- Inline simple expected expressions in `CHECK_WITH` or `TEST_RES` instead of storing them in one-use `expected_*` temporaries.
 
 ### Isolation
 
@@ -54,8 +60,10 @@ Check these in order:
 - Prefer one semantic claim per `FN_TEST`; split reads, invalid-input cases, permission checks, and isolation checks when they can fail independently.
 - Prefer straight-line setup with `CHECK` over custom `if (...) _exit(n)` trees.
 - Keep helpers low-level and mechanical; avoid hiding the core test story behind wrapper functions.
+- When scanning fixed-format output in a helper, prefer one direct parse that both identifies and extracts the target field if the format is static.
 - Keep failure handling minimal.
 - If cleanup is required after an expected failure, keep it short and deterministic.
+- In child branches, use blank lines to separate setup, mutation, verification, and termination, and leave `_exit(...)` in its own final block when it closes the branch.
 
 ### Comments
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "Review Asterinas Test"
-  short_description: "Review Asterinas test code changes"
-  default_prompt: "Use $review-asterinas-test to review an Asterinas test change for test quality, style, and validation."
+  short_description: "Review Asterinas test quality, structure, and validation"
+  default_prompt: "Use $review-asterinas-test to review an Asterinas test change for test quality, assertion structure, code style, and validation."
